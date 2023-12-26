@@ -16,3 +16,19 @@ func TestTrebuchet(t *testing.T) {
 		t.Errorf("Sum was incorrect, got: %d, want: %d.", sum, 142)
 	}
 }
+
+func TestTrebuchetWithStrings(t *testing.T) {
+	input := []string{
+		"two1nine",
+		"eightwothree",
+		"abcone2threexyz",
+		"xtwone3four",
+		"4nineeightseven2",
+		"zoneight234",
+		"7pqrstsixteen",
+	}
+	sum := calculate(input)
+	if sum != 281 {
+		t.Errorf("Sum was incorrect, got: %d, want: %d.", sum, 142)
+	}
+}
