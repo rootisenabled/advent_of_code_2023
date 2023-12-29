@@ -1,3 +1,6 @@
 go 1.21.4
 
-use ./1_trebuchet
+use (
+	./1_trebuchet
+	./2_Cube_Conundrum
+)
