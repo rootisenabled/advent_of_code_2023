@@ -28,34 +28,22 @@ func parseGames(input string) []Game {
 	gameStrings := strings.Split(input, "Game ")
 
 	for _, gameString := range gameStrings[1:] {
-		game := Game{
-			Cubes: []Cube{
-				{"red": 0},
-				{"green": 0},
-				{"blue": 0},
-			},
-		}
-
 		parts := strings.SplitN(gameString, ":", 2)
-		game.ID, _ = strconv.Atoi(strings.TrimSpace(parts[0]))
-		var cubes1 []Cube
+		gameID, _ := strconv.Atoi(strings.TrimSpace(parts[0]))
+		cubes := []Cube{}
 
 		subsets := strings.Split(parts[1], ";")
 		for _, subset := range subsets {
-			cubes := strings.Split(subset, ",")
-			for _, cube := range cubes {
-				parts := strings.Fields(cube)
+			cubeStrings := strings.Split(subset, ",")
+			for _, cubeString := range cubeStrings {
+				parts := strings.Fields(cubeString)
 				count, _ := strconv.Atoi(parts[0])
 				color := parts[1]
-				newCube := Cube{
-					color: count,
-				}
-				cubes1 = append(cubes1, newCube)
+				cubes = append(cubes, Cube{color: count})
 			}
 		}
-		game.Cubes = cubes1
 
-		games = append(games, game)
+		games = append(games, Game{ID: gameID, Cubes: cubes})
 	}
 
 	return games
