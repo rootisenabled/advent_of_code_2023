@@ -2,12 +2,12 @@ package main
 
 import (
 	"encoding/json"
-
 	"testing"
+	"utils"
 )
 
 func Test(t *testing.T) {
-	input, _ := readLines("input_test.txt")
+	input, _ := utils.ReadLines("input_test.txt")
 
 	sum := sumSlice(getValidGameIds(parseGames(input)))
 	expected := 8
@@ -18,7 +18,7 @@ func Test(t *testing.T) {
 }
 
 func TestMinimumSetOfCubes(t *testing.T) {
-	input, _ := readLines("input_test.txt")
+	input, _ := utils.ReadLines("input_test.txt")
 
 	games := parseGames(input)
 	minimumSet := getMinimumSetOfCubes(games[0])
@@ -37,7 +37,7 @@ func TestMinimumSetOfCubes(t *testing.T) {
 }
 
 func TestGetSumOfPoweredCubes(t *testing.T) {
-	input, _ := readLines("input_test.txt")
+	input, _ := utils.ReadLines("input_test.txt")
 
 	games := parseGames(input)
 	sumOfPowered := getSumOfPoweredCubes(games)

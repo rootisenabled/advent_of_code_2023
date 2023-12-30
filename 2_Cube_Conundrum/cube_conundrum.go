@@ -2,19 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
+	"utils"
 )
-
-func readLines(path string) (string, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return string(data), nil
-}
 
 type Game struct {
 	ID    int
@@ -115,7 +106,7 @@ func sumSlice(numbers []int) int {
 }
 
 func main() {
-	input, _ := readLines("input.txt")
+	input, _ := utils.ReadLines("input.txt")
 	games := parseGames(input)
 	valid_ids := getValidGameIds(games)
 
