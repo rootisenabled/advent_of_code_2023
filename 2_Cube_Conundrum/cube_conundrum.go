@@ -84,6 +84,41 @@ func getValidGameIds(games []Game) []int {
 	return valid_ids
 }
 
+func getMinimumSetOfCubes(game Game) Cube {
+	var (
+		maxRed   = 0
+		maxGreen = 0
+		maxBlue  = 0
+	)
+
+	for _, cube := range game.Cubes {
+		if cube["red"] > maxRed {
+			maxRed = cube["red"]
+		}
+		if cube["green"] > maxGreen {
+			maxGreen = cube["green"]
+		}
+		if cube["blue"] > maxBlue {
+			maxBlue = cube["blue"]
+		}
+	}
+
+	return Cube{
+		"red":   maxRed,
+		"green": maxGreen,
+		"blue":  maxBlue,
+	}
+}
+
+func getSumOfPoweredCubes(games []Game) int {
+	sum := 0
+	for _, game := range games {
+		min := getMinimumSetOfCubes(game)
+		sum += min["red"] * min["blue"] * min["green"]
+	}
+	return sum
+}
+
 func sumSlice(numbers []int) int {
 	if len(numbers) == 0 {
 		return 0
@@ -97,4 +132,5 @@ func main() {
 	valid_ids := getValidGameIds(games)
 
 	fmt.Println(sumSlice(valid_ids))
+	fmt.Println(getSumOfPoweredCubes(games))
 }
