@@ -54,3 +54,43 @@ func ExtractNumbers(input string) []*EnhancedNum {
 
 	return result
 }
+
+func IsNumberTouchingCharacter(number *EnhancedNum, lineIndex int, charPostion int, numberOfLines int) bool {
+	for index := lineIndex - 1; index <= lineIndex+1; index++ {
+		if index < 0 || index >= numberOfLines {
+			continue
+		}
+
+		if number.lineIndex != index {
+			continue
+		}
+
+		if number.startPosition == charPostion || number.startPosition == charPostion+1 {
+			return true
+		}
+
+		if number.endPosition == charPostion || number.endPosition-1 == charPostion {
+			return true
+		}
+
+		if number.lineIndex != lineIndex {
+			if number.startPosition <= charPostion && number.endPosition >= charPostion {
+				return true
+			}
+		}
+
+	}
+	return false
+}
+
+func FindCharacterPositions(input string, character rune) []int {
+	var result []int
+
+	for index, char := range input {
+		if char == character {
+			result = append(result, index)
+		}
+	}
+
+	return result
+}
